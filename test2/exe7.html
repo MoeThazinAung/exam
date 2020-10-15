@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <script>
+        function calendar() {
+            //declare
+            // let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            let currentDate = new Date();
+            //Day & Month & Year
+            let currentDayText = days[currentDate.getDay()];
+            let currentYear = currentDate.getFullYear();
+            let currentMonth = currentDate.getMonth();
+            //Showing title
+            let monthTextEle = document.querySelector("h1");
+            let dateTextEle = document.querySelector("h2");
+            monthTextEle.innerHTML = currentDayText;
+            dateTextEle.innerHTML = currentDate.toDateString();
+            show(currentMonth, currentYear);
+            function show(month, year)
+            {
+                let firstDay = (new Date(year, month)).getDay();
+                // alert(firstDay);
+                let daysInMonth = 32 - new Date(year, month, 32).getDate();
+                // alert(daysInMonth);
+                let tbody = document.getElementById("calendar-body");
+                tbody.innerHTML = "";
+                // start filling table
+                    let date = 1;
+                //for rows
+                for (let i = 0; i < 6; i++) {
+                    let row = document.createElement("tr");
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < firstDay) {
+                            let cell = document.createElement("td");
+                            let cellText = document.createTextNode("");
+                            cell.appendChild(cellText);
+                            row.appendChild(cell);
+                        }
+                        else if (date > daysInMonth) {
+                            break;
+                        }
+                        else {
+                            let cell = document.createElement("td");
+                            let cellText = document.createTextNode(date);
+                            if (date === currentDate.getDate()&& year === currentDate.getFullYear() && month === currentDate.getMonth()) {
+                                cell.classList.add("background");
+                            }
+                            // alert(nowDate.getMonth());
+                            cell.appendChild(cellText);
+                            row.appendChild(cell);
+                            date++;
+                        }
+                    }
+                    tbody.appendChild(row);
+                }
+            }
+        }
+    </script>
+</head>
+<style>
+    * {
+        font-family: Calibri;
+    }
+    div {
+        margin-left: 400px;
+    }
+    .background {
+        background-color: red;
+        color: white;
+    }
+</style>
+<body onload="calendar()">
+    <div>
+        <h1 style="margin-left: 150px;"></h1>
+        <h2 style="margin-left: 150px;"></h2>
+        <table border="1" cellpadding="20" cellspacing="0" id="calendarTable">
+            <thead>
+            <tr style="background-color: pink">
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            </thead>
+            <tbody id="calendar-body">
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

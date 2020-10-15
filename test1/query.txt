@@ -1,0 +1,17 @@
+1. SELECT name FROM staffs AS staff_name
+2. SELECT DISTINCT department_id FROM staffs
+3.SELECT * from staffs ORDER BY name
+4.SELECT staffs.name AS"staff_name",departments.name AS"department_name" FROM staffs INNER JOIN departments ON department_id=staffs.department_id ORDER BY staffs.name, departments.name DESC
+5.SELECT * FROM staffs WHERE name="Kay Thwe" OR name="Thae Su Wai"
+6.SELECT  * FROM staffs  INNER JOIN departments ON staffs.department_id=departments.id WHERE departments.name="Admin"
+7.SELECT * FROM staffs WHERE name LIKE "%a%"
+8.SELECT * FROM staffs WHERE name LIKE "%e"
+9.SELECT * FROM staffs WHERE salary BETWEEN 100000 AND 500000
+10. SELECT * FROM staffs WHERE joindate LIKE"2014-02%"
+11.SELECT  COUNT(*) FROM staffs  INNER JOIN departments ON staffs.department_id=departments.id WHERE departments.name="Admin"
+12.SELECT  * FROM staffs  INNER JOIN departments ON staffs.department_id=departments.id WHERE departments.name="Manager"
+13.SELECT * FROM staffs WHERE id BETWEEN 1 AND 5
+14.SELECT salary FROM staffs ORDER BY salary DESC LIMIT 3
+15.SELECT departments.name as department_name, staffs.salary FROM staffs INNER JOIN departments ON staffs.department_id=departments.id
+16.SELECT * FROM staffs INNER JOIN bonus ON staffs.id=bonus.staff_id WHERE bonusdate LIKE "2016-02%"
+17.SELECT * FROM staffs INNER JOIN bonus ON staffs.id=bonus.staff_id WHERE staffs.name="Aye Aye" AND bonusdate LIKE "2016%"
